@@ -1,0 +1,15 @@
+/* CSS Document */
+#bodyup1title1{ width:1000px; height:27px ; background-image:url(../images/2Registration_title.jpg);}
+#bodyup1text1{ width:1000px; height:550px ; border-bottom:1px #D8D8D8 solid; border-left:1px #D8D8D8 solid; border-right:1px #D8D8D8 solid;}
+#bodyup11{ width:1000px; height:450px; float:left;}
+#bodyup0{ width:1000px; height:450px; margin:4px auto; }
+
+#bodyup1title2{ width:1000px; height:27px ; background-image:url(../images/2Login.jpg);}
+#bodyup1title3{ width:1000px; height:27px ; background-image:url(../images/3Company_RE_title.jpg);}
+
+#loginbg{width:600px; height:270px; background-image:url(../images/Login_bg.jpg);}
+#logintext{width:450px; height:270px; float:right; margin-top:40px}
+
+#Combg{width:700px; height:400px;}
+#Comimage{width:300px; height:350px;float:left;background-image:url(../images/block_pic_350.jpg);}
+#Comtext{width:400px; height:500px;float:right; margin-top:50px;}

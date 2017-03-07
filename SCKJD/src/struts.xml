@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+   <package name="com.dhee" namespace="/" extends="struts-default">
+   		<interceptors>
+   			<!-- 定义拦截器 -->
+ 			<interceptor name="myInterceptor" class="com.dhee.db.MyInterceptor"></interceptor>
+			<!-- 定义拦截器栈 -->
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="myInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<global-results><result name="login">index/2Login.jsp</result></global-results>
+		<!-- 登录action -->
+		<action name="login" class="com.dhee.action.LoginAction" method="login">
+			<result name="success">manager/Welcome.jsp</result>
+			<result name="error">index/2Login.jsp</result>
+		</action>
+		<action name="log" class="com.dhee.action.EnterprisesAction" method="execute">
+			<result name="success">index/2Login.jsp</result>
+		</action>
+		<!-- 注册action -->
+		<action name="reg" class="com.dhee.action.RegistrationAction" method="regist">
+			<result name="success">index/2Registration.jsp</result>
+		</action>
+		<action name="registration" class="com.dhee.action.RegistrationAction" method="registration">
+			<result name="success">index/2Login.jsp</result>
+		</action>
+		<!-- 后台Welcome页面Action -->
+		<action name="welcome" class="com.dhee.action.EnterprisesAction" method="execute">
+			<result name="success">manager/Welcome.jsp</result>
+			<interceptor-ref name="myStack"></interceptor-ref>
+		</action>
+		
+		<!--  <action name="student" class="com.dhee.action.studentAction" method="{1}selectall">
+		<result name="success">index/studentInfo.jsp</result>
+		</action>  --> 
+		<!-- test -->
+		 <action name="abc" class="com.dhee.action.studentAction" method="a">
+			<result name="success">index/a.jsp</result>
+		</action>  
+		<!-- 学生-->
+		 <action name="student" class="com.dhee.action.studentAction" method="selectall">
+			<result name="success">index/studentInfo.jsp</result>
+		</action>  
+   		<!-- 前台基地企业 -->
+   		<action name="selectCompanyRE" class="com.dhee.action.EnterprisesAction" method="selectCompanyRE">
+			<result name="success">index/2Company_RE.jsp</result>
+		</action>
+		<action name="selectcompanydetail" class="com.dhee.action.EnterprisesAction" method="selectcompanydetail">
+			<result name="success">index/3Company_RE.jsp</result>
+		</action>
+   		<!-- 后台基地企业 -->
+   		<action name="managerCompanyRE" class="com.dhee.action.EnterprisesAction" method="managerCompanyRE">
+			<result name="success">manager/2Company_RE.jsp</result>
+			<interceptor-ref name="myStack"></interceptor-ref>
+		</action>
+		<action name="add" class="com.dhee.action.EnterprisesAction" method="execute">
+			<result name="success">manager/4Company_add.jsp</result>
+			<interceptor-ref name="myStack"></interceptor-ref>
+		</action>
+		<action name="managercompanydetail" class="com.dhee.action.EnterprisesAction" method="managercompanydetail">
+			<result name="success">manager/3Company_RE.jsp</result>
+			<interceptor-ref name="myStack"></interceptor-ref>
+		</action>
+		<action name="updateEnterprises" class="com.dhee.action.EnterprisesAction" method="updateEnterprises">
+			<result name="success">manager/4Company_RE_update.jsp</result>
+			<interceptor-ref name="myStack"></interceptor-ref>
+		</action>
+		<action name="resetEnterprises" class="com.dhee.action.EnterprisesAction" method="resetEnterprises">
+			<result name="success" type="chain">managerCompanyRE</result>
+			<interceptor-ref name="myStack"></interceptor-ref>
+		</action>
+		<action name="addEnterprises" class="com.dhee.action.EnterprisesAction" method="addEnterprises">
+			<result name="success" type="chain">managerCompanyRE</result>
+			<interceptor-ref name="myStack"></interceptor-ref>
+		</action>
+		<action name="deleteEnterprises" class="com.dhee.action.EnterprisesAction" method="deleteEnterprises">
+			<result name="success" type="chain">managerCompanyRE</result>
+			<interceptor-ref name="myStack"></interceptor-ref>
+		</action>
+   		<!-- 前台最新公告action -->
+   		<action name="selectindex" class="com.dhee.action.NoticesAction" method="selectindex">
+   			<result name="success">/index/Index.jsp</result>
+   		</action>
+   		<action name="select2Notices" class="com.dhee.action.NoticesAction" method="select2Notices">
+   			<result name="success">/index/2Notices.jsp</result>
+   		</action>
+   		<action name="select3Notices" class="com.dhee.action.NoticesAction" method="select3Notices">
+   			<result name="success">/index/3Notices.jsp</result>
+   		</action>
+   		<!-- 后台最新公告 -->
+       <action name="managerNotices" class="com.dhee.action.NoticesAction" method="managerNotices">
+	        <result name="success">manager/2Notices.jsp</result>
+	        <interceptor-ref name="myStack"></interceptor-ref>
+	    </action>
+	    <action name="manager3Notices" class="com.dhee.action.NoticesAction" method="manager3Notices">
+	      	<result name="success">manager/3Notices.jsp</result>
+	      	<interceptor-ref name="myStack"></interceptor-ref>
+	    </action>
+	    <action name="manager4Notices" class="com.dhee.action.NoticesAction" method="manager4Notices">
+	      	<result name="success">manager/4Notices_add.jsp</result>
+	      	<interceptor-ref name="myStack"></interceptor-ref>
+	    </action>
+	    <action name="manageradd" class="com.dhee.action.NoticesAction" method="manageradd">
+		    <result name="success" type="chain">managerNotices</result>
+		    <interceptor-ref name="myStack"></interceptor-ref>
+	    </action>
+	    <action name="update" class="com.dhee.action.NoticesAction" method="update">
+	        <result name="success">manager/4Notices_update.jsp</result>
+	        <interceptor-ref name="myStack"></interceptor-ref>
+	    </action>
+	    <action name="managerupdate" class="com.dhee.action.NoticesAction" method="managerupdate">
+	        <result name="success" type="chain">managerNotices</result>
+	        <interceptor-ref name="myStack"></interceptor-ref>
+	    </action>
+	    <action name="date" class="com.dhee.action.NoticesAction" method="date">
+			<result name="success" type="chain">managerNotices</result>
+			<interceptor-ref name="myStack"></interceptor-ref>
+		</action>
+		<!-- 前台地图 -->
+		<action name="Base_map" class="com.dhee.action.ExportBaseAction" method="basemap">
+   			<result name="success">/index/Base_map.jsp</result>
+   		</action>
+		 <action name="_3ExportBase" class="com.dhee.action.ExportBaseAction" method="findEntrepriseByBaseId">
+   			<result name="success">/index/3Export Base.jsp</result>
+   		</action>
+		<!-- 后台基地 -->
+   		<action name="2ExportBase" class="com.dhee.action.ExportBaseAction" method="selectexportbase">
+   			<result name="success">manager/2Export Base.jsp</result>
+   			<interceptor-ref name="myStack"></interceptor-ref>
+   		</action>
+   		<action name="4Export_update" class="com.dhee.action.ExportBaseAction" method="exportupdatebutton">
+   			<result name="success">manager/4Export_update.jsp</result>
+   			<interceptor-ref name="myStack"></interceptor-ref>
+   		</action>
+   		<!-- 更新提交返回 -->
+   		<action name="2submit_return" class="com.dhee.action.ExportBaseAction" method="baseupdatesubmit">
+   			<result name="success" type="chain">2ExportBase</result>
+   			<interceptor-ref name="myStack"></interceptor-ref>
+   		</action>
+   		<!-- 删除 -->
+   		<action name="base_delete" class="com.dhee.action.ExportBaseAction" method="base_deletet">
+   			<result name="success" type="chain">2ExportBase</result>
+   			<interceptor-ref name="myStack"></interceptor-ref>
+   		</action>
+   		<!-- 增加 -->
+   		<action name="base_add" class="com.dhee.action.ExportBaseAction" method=" base_add">
+   			<result name="success">manager/4Export_add.jsp</result>
+   			<interceptor-ref name="myStack"></interceptor-ref>
+   		</action>
+   		<action name="base_add_submit" class="com.dhee.action.ExportBaseAction" method="baseaddsubmit">
+   			<result name="success" type="chain">2ExportBase</result>
+   			<interceptor-ref name="myStack"></interceptor-ref>
+   		</action>
+   		<action name="singleread" class="com.dhee.action.ExportBaseAction" method="singleread">
+   			<result name="success" >manager/3Export.jsp</result>
+   			<interceptor-ref name="myStack"></interceptor-ref>
+   		</action>
+   </package>
+</struts>
